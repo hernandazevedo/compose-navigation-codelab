@@ -21,6 +21,7 @@ import com.example.compose.rally.data.UserData
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
@@ -30,11 +31,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.compose.rally.ui.accounts.AccountsBody
+import com.example.compose.rally.ui.accounts.SingleAccountBody
 import com.example.compose.rally.ui.bills.BillsBody
 import com.example.compose.rally.ui.components.RallyTabRow
 import com.example.compose.rally.ui.overview.OverviewBody
@@ -70,19 +75,7 @@ fun RallyApp() {
                 )
             }
         ) { innerPadding ->
-            NavHost(navController = navController,
-            startDestination = RallyScreen.Overview.name,
-            modifier = Modifier.padding(innerPadding)) {
-                composable(RallyScreen.Overview.name) {
-                    OverviewBody()
-                }
-                composable(RallyScreen.Accounts.name) {
-                    AccountsBody(accounts = UserData.accounts)
-                }
-                composable(RallyScreen.Bills.name) {
-                    BillsBody(bills = UserData.bills)
-                }
-            }
+            RallyNavHost(navController, innerPadding)
 //            Box(Modifier.padding(innerPadding)) {
 //                currentScreen.content(
 //                    onScreenChange = { screen ->
@@ -93,3 +86,5 @@ fun RallyApp() {
         }
     }
 }
+
+
