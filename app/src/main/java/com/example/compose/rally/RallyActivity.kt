@@ -75,7 +75,7 @@ fun RallyApp() {
                 )
             }
         ) { innerPadding ->
-            RallyNavHost(navController, innerPadding)
+            RallyNavHost(navController, Modifier.padding(innerPadding))
 //            Box(Modifier.padding(innerPadding)) {
 //                currentScreen.content(
 //                    onScreenChange = { screen ->

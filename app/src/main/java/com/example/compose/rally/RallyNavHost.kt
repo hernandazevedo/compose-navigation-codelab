@@ -22,13 +22,12 @@ val accountsName = RallyScreen.Accounts.name
 @Composable
 fun RallyNavHost(
     navController: NavHostController,
-    innerPadding: PaddingValues
+    modifier: Modifier = Modifier
 ) {
-
     NavHost(
         navController = navController,
         startDestination = RallyScreen.Overview.name,
-        modifier = Modifier.padding(innerPadding)
+        modifier = modifier
     ) {
         composable(route = RallyScreen.Overview.name) {
             OverviewBody(
