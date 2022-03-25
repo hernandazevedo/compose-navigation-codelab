@@ -10,6 +10,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import androidx.navigation.navDeepLink
 import com.example.compose.rally.data.UserData
 import com.example.compose.rally.ui.accounts.AccountsBody
 import com.example.compose.rally.ui.accounts.SingleAccountBody
@@ -51,6 +52,9 @@ fun RallyNavHost(
             route = "$accountsName/{name}",
             arguments = listOf(navArgument("name") {
                 type = NavType.StringType
+            }),
+            deepLinks = listOf(navDeepLink {
+                uriPattern = "rally://$accountsName/{name}"
             })
         ) { backStackEntry ->
             val accountName = backStackEntry.arguments?.getString("name")
